@@ -1,3 +1,24 @@
+# Streetscan use 
+First, install the requirements `pip install -r requirements.txt`. 
+
+Then, copy the weights from `s3://updata-streetscan/models/best_deeplabv3plus_mobilenet_cityscapes_os16.pth` 
+
+```
+mkdir -p pretrained
+aws s3 cp s3://updata-streetscan/models/best_deeplabv3plus_mobilenet_cityscapes_os16.pth pretrained/ 
+```
+
+Finally, run the model using `predict_segmentations.py`. 
+
+```
+python predict_segmentations.py \
+    --input path/to/imgs \
+    --dataset cityscapes \
+    --model deeplabv3plus_mobilenet \
+    --save_val_results_to /path/to/output \
+    --ckpt pretrained/best_deeplabv3plus_mobilenet_cityscapes_os16.pth
+```
+
 # DeepLabv3Plus-Pytorch
 
 Pretrained DeepLabv3, DeepLabv3+ for Pascal VOC & Cityscapes.
